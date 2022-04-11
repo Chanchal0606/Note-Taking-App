@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magic Notes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tourney&display=swap" rel="stylesheet">
+    <style>
+        *{
+            font-family: 'Hind Siliguri', sans-serif;
+            
+        }
+        body {
+            margin: 0px;
+        }
+        
+        /* properties to navbar */
+        .navbar {
+            background-color: #95E1D3;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-radius: 100px;
+            height: 50px;
+            position: fixed;
+            top: 0px;
+            width: 100%;
+        }
+
+        /* modifying logo */
+        #logolink {
+            text-decoration: none;
+        }
+        .logo {
+            margin: 10px;
+            margin-left: 20px;
+            color: black;
+        }
+
+        /* navbar's menu */
+        .navbar ul {
+            list-style: none;
+        }
+        .navbar ul li a {
+            text-decoration: none;
+            font-family: 'Satisfy', cursive;
+            font-weight: 500;
+            color: black;
+            padding: 12px;
+        }
+        .menu {
+            padding: 0px;
+            font-size: 20px;
+            border-radius: 100px;
+            background-color: white;
+            font-family: 'Satisfy', cursive;
+        }
+
+        /* search icon and bar properties */
+        #form {
+            width: 180px;
+            display: flex;
+            align-items: center;
+            padding-right: 20px;
+            
+        }
+        /* search icon modification */
+        .sericon {
+            padding-left: 150px;
+            border: none;
+            background-color: none;
+            width: 20px;
+            height: 20px;
+        }
+        /* searchbar modification */
+        #sea {
+            margin: 8px;
+            padding: 10px;
+            height: 30px;
+            border: none;
+            border-radius: 100px;
+            background-color: white;
+            outline: none;
+        }
+
+        /* Space of mainbox from top as navbar is fixed */
+        .space {
+            height: 50px;
+        }
+
+
+        /* Mainbox that contains
+        1. Add text
+        2. Notes */
+        #mainbox {
+            /* margin: 10px; */
+            width: 800px;
+            margin: 8px auto;
+            padding: 8px 8px 8px 8px;
+        }
+        /* Main Heading of the page */
+        .heading {
+            text-align: center;
+            margin: 8px;
+            margin-bottom: 2px;
+            font-family: 'Tourney', cursive;
+            /* font-weight: normal; */
+        }
+        /* Note Input Area */
+        .notebox {
+            border: 1px solid rgb(196, 194, 194);
+            padding: 15px;
+        }
+        /* Note input area heading */
+        .notebox h3 {
+            margin: 7px 0px;
+        }
+
+        .headnote{
+            width: 97.8%;
+            font-weight: bolder;
+            font-size: 1.17em;
+            padding-left: 6px;
+            margin-bottom: 4px;
+        }
+        
+        /* textarea */
+        #addtext {
+            padding-left: 6px;
+            border: 1px solid rgb(196, 194, 194);
+            width: 98%;
+            display: block;
+        }
+        /* To modify scrollbar of textarea */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: none;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        /*Add Button*/
+        .btn {
+            margin-top: 4px;
+            /*ADD NOTE button*/
+            border: 3px solid #0d6efd;
+            font-size: medium;
+            padding: 6px 11px;
+            border-radius: 4.5px;
+            color: white;
+            background-color: #0d6efd;
+        }
+        .btn:hover {
+            color: #fff;
+            background-color: #0b5ed7;
+            border-color: #0a58ca;
+        }
+        .btn:active {
+            background-color: #0b5ed7;
+            border: 3px solid #66a3ff;
+        }
+
+        /* div containing notes */
+        .notearea {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(180px,1fr));
+            /* grid-auto-rows: 0.333fr; */
+            grid-gap: 37px;
+        }
+
+        /* div to show note 1 */
+        .note div{
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content:space-between;
+
+        }
+        .note div button{
+            width: 60.7%;
+        }
+        .note {
+            border: 1px solid rgb(196, 194, 194);
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            justify-content:space-between;
+        }
+        /* heading inside div note */
+        .note h3 {
+            margin: 0px;
+            margin-bottom: 0px;
+        }
+        /* actual notes */
+        .note p {
+            display: block;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            height: 100%;
+        }
+
+        /* Responsiveness */
+        @media(max-width: 800px) {
+            #mainbox {
+                width: auto;
+            }
+
+        }
+        @media(max-width: 750px) {
+            .repbtn{
+                padding: 0px;
+                font-size: 14px;
+            }
+        }
+
+        @media(max-width: 350px) {
+            #heading {
+                font-size: 1.2em;
+            }
+        }
+
+        @media(max-width: 210px) {
+            #heading {
+                font-size: 1em;
+            }
+        }
+        .date{
+            font-size: 11px;
+            text-align: end;
+            padding-top: 8px;
+        }
+        .hrhr{
+            margin: 0px;
+            width: 40%;
+            height: 2px;
+            background-color: rgb(43, 106, 253);
+        }
+
+
+       
+        .out{
+            /* border: 1px solid red; */
+            width: 50px;
+            height: 27px;
+            border-radius: 100px;
+            background-color: rgb(0, 0, 0);
+        }
+        .in{
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            position: relative;
+            top: 3.5px;
+            left: 3.5px;
+            border-radius: 100px;
+            background-color: white;
+            transition: transform 0.2s ease-in 0s;
+        }
+        /* .spacerbet{
+            height: 12px;
+        }
+        #on{
+            left: 35px;
+        } */
+        .container{
+            display: flex;
+            width: 54px;
+        }
+        footer{
+            width: 98%;
+            position: fixed;
+            padding: 10px;
+            bottom: 0px;
+            display: flex;
+            justify-content: flex-end;
+        }
+        .dark{
+            background-color: rgb(0, 0, 0);
+            color: rgb(255, 255, 255);
+            /* opacity: 0.8; */
+        }
+        .darkbtn{
+            background-color: #0252ff;
+            border-color: #0252ff;
+        }
+        :root{
+            --color1: #3d3939;
+        }
+        .dark_notebox{
+            background-color: var(--color1);
+        }
+        .dark_nav{
+            background-color: #7dbdb1;
+        }
+    </style>
+</head>
+
+<body id="b">
+
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+
+        <!-- Logo -->
+        <a id="logolink" href="Magic Notes.html">
+            <h1 class="logo" id="logo">
+                Magic Notes
+            </h1>
+        </a>
+
+        <!-- menu -->
+        <ul id="menu" class="menu">
+            <li><a href="Magic Notes.html">Home</a></li>
+        </ul>
+
+        <!-- search bar and icon -->
+        <form id="form" action="">
+            <input  type="search" style="display: none;" name="" id="sea" placeholder="Search">
+            <img class="sericon" id="sericon" src="sericon.png" alt="">
+        </form>
+
+    </nav>
+
+    <!-- Spacing -->
+    <div class="space"></div>
+
+    <!-- section for adding text and showing result -->
+    <div id="mainbox">
+        <hr>
+        
+        <!-- Welcome to Magic Notes Heading -->
+        <h1 id="heading" class="heading">
+            Welcome To Magic Notes
+        </h1>
+        <!-- textarea and button to take input -->
+        <div class="notebox" id="notebox">
+            <h3>Add a Note</h3>
+            <input id="headnote" class="headnote" type="text" placeholder="Title">
+            <textarea name="" id="addtext" cols="100rem" rows="5" class="addtext" placeholder="Your note"></textarea>
+            <button id="addbtn" class="btn">Add Note</button>
+        </div>
+
+        <hr>         <!--Your Notes Heading-->
+        <h1 class="heading">Your Notes</h1>
+        <hr>
+        
+        <!-- Shows the notes added -->
+        <div id="notearea" class="notearea">
+            <p>Your Notes are shown here.</p>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <span id="out" class="out"> <div id="off" class="in off"></div></span>
+        </div>
+    </footer>
+
+    <script src="22nd_MagicNotes.js"></script>
+</body>
+
+</html>
